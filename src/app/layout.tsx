@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+});
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
 });
 
 export const metadata: Metadata = {
   title: "Image Converter",
-  description: "Created by Yi Tam",
+  description: "Created by Yi and Mateusz",
 };
 
 export default function RootLayout({
@@ -19,7 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fontSans.variable}`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
