@@ -1,9 +1,11 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-import { cn } from "@/lib/utils";
+import type { Metadata } from 'next'
+
+import Footer from '@/components/footer'
+import Header from '@/components/header'
+import { cn } from '@/lib/utils'
+import localFont from 'next/font/local'
+
+import './globals.css'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -31,15 +33,15 @@ export default function RootLayout({
           `${geistSans.variable} ${geistMono.variable}`,
           'grid grid-rows-[auto_1fr_auto] gap-16',
           'items-center justify-items-center',
-          "bg-neutral-100 font-sans  min-h-screen  sm:p-0"
+          'min-h-screen bg-neutral-100 font-sans sm:p-0',
         )}
       >
         <Header />
-        <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        <main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
           {children}
         </main>
         <Footer />
       </body>
     </html>
-  );
+  )
 }
