@@ -31,8 +31,7 @@ export default function RootLayout({
       <body
         className={cn(
           `${geistSans.variable} ${geistMono.variable}`,
-          'grid grid-rows-[auto_1fr_auto] gap-16',
-          'items-center justify-items-center',
+          'flex flex-col justify-between items-center justify-items-center',
           'min-h-screen bg-neutral-100 font-sans sm:p-0',
         )}
       >
