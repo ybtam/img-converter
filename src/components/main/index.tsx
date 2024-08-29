@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useTransition, useEffect, Suspense } from "react";
+import React, { useState, useTransition, Suspense } from "react";
 import Dropzone from "./dropzone";
 import QualitySlider from "./qualitySlider";
 import { convertToWebP } from "../../utils/imageConverter";
