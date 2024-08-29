@@ -1,6 +1,7 @@
 export const convertToWebP = (
   file: File,
-  callback: (webpUrl: string | undefined) => void
+  callback: (webpUrl: string | undefined) => void,
+  quality: number
 ) => {
   const reader = new FileReader();
   reader.readAsDataURL(file);
@@ -31,7 +32,7 @@ export const convertToWebP = (
             }
           },
           "image/webp",
-          0.9
+          quality
         );
       };
     } else {

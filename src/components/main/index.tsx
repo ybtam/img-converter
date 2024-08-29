@@ -1,28 +1,40 @@
 "use client";
 
-import React, { useState, useTransition, Suspense } from "react";
+import React, { useState, useTransition, useEffect, Suspense } from "react";
 import Dropzone from "./dropzone";
+import QualitySlider from "./qualitySlider";
 import { convertToWebP } from "../../utils/imageConverter";
 import Success from "@/assets/success";
 
 export default function ImgConvert() {
-  const [convertedFile, setConvertedFile] = useState<string | undefined>(
-    undefined
-  );
-  const [originalFileName, setOriginalFileName] = useState<string | undefined>(
-    undefined
-  );
+  const [file, setFile] = useState<File | null>(null);
+  const [convertedFile, setConvertedFile] = useState<string | undefined>();
+  const [originalFileName, setOriginalFileName] = useState<
+    string | undefined
+  >();
   const [isPending, startTransition] = useTransition();
+  const [quality, setQuality] = useState(0.85);
 
-  const handleFileAccepted = (file: File) => {
-    const fileNameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
+  const handleFileAccepted = (acceptedFile: File) => {
+    setFile(acceptedFile);
+    const fileNameWithoutExtension = acceptedFile.name.replace(/\.[^/.]+$/, "");
     setOriginalFileName(fileNameWithoutExtension);
-    startTransition(() => convertToWebP(file, setConvertedFile));
+    startTransition(() =>
+      convertToWebP(acceptedFile, setConvertedFile, quality)
+    );
+  };
+
+  const handleQualityChange = (newQuality: number) => {
+    setQuality(newQuality);
+    if (file) {
+      startTransition(() => convertToWebP(file, setConvertedFile, newQuality));
+    }
   };
 
   return (
     <div className="flex flex-col items-center justify-center">
       <h1 className="text-xl mb-4">Image to WebP Converter</h1>
+      <QualitySlider onQualityChange={handleQualityChange} />
       <Dropzone onFileAccepted={handleFileAccepted} />
       {isPending && <p>Converting...</p>}
       <Suspense fallback={<p>Loading converted image...</p>}>
