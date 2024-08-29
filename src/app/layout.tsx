@@ -31,14 +31,12 @@ export default function RootLayout({
       <body
         className={cn(
           `${geistSans.variable} ${geistMono.variable}`,
-          'flex flex-col justify-between items-center justify-items-center',
+          'flex flex-col items-center justify-between justify-items-center',
           'min-h-screen bg-neutral-100 font-sans sm:p-0',
         )}
       >
         <Header />
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
