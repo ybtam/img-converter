@@ -31,11 +31,12 @@ export default function RootLayout({
       <body
         className={cn(
           `${geistSans.variable} ${geistMono.variable}`,
-          'grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-0',
+          'flex flex-col justify-between items-center justify-items-center',
+          'min-h-screen bg-neutral-100 font-sans sm:p-0',
         )}
       >
         <Header />
-        <main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
+        <main>
           {children}
         </main>
         <Footer />
