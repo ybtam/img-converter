@@ -29,7 +29,9 @@ export default function RootLayout({
       <body
         className={cn(
           `${geistSans.variable} ${geistMono.variable}`,
-          "bg-neutral-100 font-sans grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen  gap-16 sm:p-0"
+          'grid grid-rows-[auto_1fr_auto] gap-16',
+          'items-center justify-items-center',
+          "bg-neutral-100 font-sans  min-h-screen  sm:p-0"
         )}
       >
         <Header />
