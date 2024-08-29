@@ -35,9 +35,13 @@ const QualitySlider: React.FC<QualitySliderProps> = ({ onQualityChange }) => {
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >
-          <InfoIcon />
-          {showTooltip && (
-            <div className="tooltip">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button className={'h-6 w-6 bg-transparent'} size={'icon'} variant={'outline'}>
+                ?
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent>
               <p>
                 85% is the original quality of the image. <br />
                 Increasing above 85% increases size and quality of the image.
@@ -60,5 +64,7 @@ const QualitySlider: React.FC<QualitySliderProps> = ({ onQualityChange }) => {
     </div>
   );
 };
+            </PopoverContent>
+          </Popover>
 
 export default QualitySlider;
