@@ -16,6 +16,9 @@ const config = {
       },
     },
     extend: {
+      boxShadow: {
+        'top-sm': '0 -1px 6px rgba(0, 0, 0, 0.05)',
+      },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
