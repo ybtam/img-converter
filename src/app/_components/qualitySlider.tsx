@@ -1,39 +1,37 @@
-import React, { useState } from "react";
-import "./slider-tooltip.css";
-import InfoIcon from "@/assets/info";
+import { Button } from '@/components/ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Slider } from '@/components/ui/slider'
+import React, { useState } from 'react'
 
 interface QualitySliderProps {
-  onQualityChange: (quality: number) => void;
+  onQualityChange: (quality: number) => void
 }
 
 const QualitySlider: React.FC<QualitySliderProps> = ({ onQualityChange }) => {
-  const [quality, setQuality] = useState(0.85);
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [quality, setQuality] = useState(0.85)
+  const [showTooltip, setShowTooltip] = useState(false)
 
-  const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newQuality = parseFloat(event.target.value);
-    setQuality(newQuality);
-    onQualityChange(newQuality);
-  };
+  const handleSliderChange = (value: number) => {
+    setQuality(value)
+    onQualityChange(value)
+  }
 
   const handleMouseOver = () => {
-    setShowTooltip(true);
-  };
+    setShowTooltip(true)
+  }
 
   const handleMouseOut = () => {
-    setShowTooltip(false);
-  };
+    setShowTooltip(false)
+  }
 
   return (
-    <div className="flex flex-col items-center mb-4 relative">
-      <div className="flex items-center justify-between mb-2">
-        <label htmlFor="qualitySlider" className="mr-4">
-          Quality: {Math.round(quality * 100)}%
-        </label>
+    <div className="relative flex flex-col items-center gap-2">
+      <div className="flex items-center justify-between gap-4">
+        <label htmlFor="qualitySlider">Quality: {Math.round(quality * 100)}%</label>
         <div
           className="relative cursor-pointer"
-          onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
+          onMouseOver={handleMouseOver}
         >
           <Popover>
             <PopoverTrigger asChild>
@@ -48,23 +46,20 @@ const QualitySlider: React.FC<QualitySliderProps> = ({ onQualityChange }) => {
                 <br />
                 Decreasing below 85% reduces size and quality of the image.
               </p>
-            </div>
-          )}
-        </div>
-      </div>
-      <input
-        type="range"
-        min="0.1"
-        max="1"
-        step="0.01"
-        value={quality}
-        onChange={handleSliderChange}
-        className="w-64"
-      />
-    </div>
-  );
-};
             </PopoverContent>
           </Popover>
+        </div>
+      </div>
+      <Slider
+        className={'w-full'}
+        defaultValue={[quality]}
+        max={1}
+        min={0.01}
+        onValueChange={value => handleSliderChange(value[0])}
+        step={0.01}
+      />
+    </div>
+  )
+}
 
-export default QualitySlider;
+export default QualitySlider
