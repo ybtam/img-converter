@@ -6,23 +6,23 @@ import Footer from "@/components/footer";
 import { cn } from "@/lib/utils";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-});
+  src: './fonts/GeistVF.woff',
+  variable: '--font-geist-sans',
+})
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-});
+  src: './fonts/GeistMonoVF.woff',
+  variable: '--font-geist-mono',
+})
 
 export const metadata: Metadata = {
-  title: "Image Converter",
-  description: "Created by Yi and Mateusz",
-};
+  description: 'Created by Yi and Mateusz',
+  title: 'Image Converter',
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
