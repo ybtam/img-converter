@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-6">
-      <h1 className="text-xl">Image to WebP Converter</h1>
+      <h1 className="text-xl">Convert your image</h1>
       <QualitySlider quality={quality} onQualityChange={handleQualityChange} />
       <Dropzone onFileAccepted={handleFileAccepted} />
       {isPending && <p>Converting...</p>}
