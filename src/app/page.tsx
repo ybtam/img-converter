@@ -3,7 +3,7 @@
 import Dropzone from '@/app/_components/dropzone'
 import QualitySlider from '@/app/_components/qualitySlider'
 import Success from '@/assets/success'
-import { convertToWebP } from '@/utils/imageConverter'
+import { convertImage } from '@/utils/imageConverter'
 import React, { Suspense, useState, useTransition } from 'react'
 
 export default function Home() {
@@ -17,13 +17,13 @@ export default function Home() {
     setFile(acceptedFile)
     const fileNameWithoutExtension = acceptedFile.name.replace(/\.[^/.]+$/, '')
     setOriginalFileName(fileNameWithoutExtension)
-    startTransition(() => convertToWebP(acceptedFile, setConvertedFile, quality))
+    startTransition(() => convertImage({file:acceptedFile, callback:setConvertedFile, quality, format: 'webp'}))
   }
 
   const handleQualityChange = (newQuality: number) => {
     setQuality(newQuality)
     if (file) {
-      startTransition(() => convertToWebP(file, setConvertedFile, newQuality))
+      startTransition(() => convertImage({file, callback:setConvertedFile, quality:newQuality, format: 'webp'}))
     }
   }
 
